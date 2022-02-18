@@ -41,10 +41,12 @@ public class WordDuoList {
      * Precondition:  word.length >2
      */
     public WordDuoList(String[] words){
-        /* part A */
-
-
-
+         allDuos = new ArrayList<WordDuo>();
+         for(int i = 0; i < words.length; i++){
+             for(int j = 1+i; j< words.length; j++){
+                 allDuos.add(new WordDuo(words[i], words[j]));
+             }
+         }
 
     }
     public String toString(){
@@ -72,11 +74,14 @@ public class WordDuoList {
     ("fox", "red"), ("the", "red")
      */
     public int numMatches(){
-        /* part B  */
-
-
-
-        return 0;  // replace this
+        int counter = 0;
+        for(int i = 0; i<allDuos.size(); i++){
+            WordDuo x = allDuos.get(i);
+            if(x.getFirst().equals(x.getSecond())){
+                counter++;
+            }
+        }
+        return counter;  // replace this
     }
 
     /*Write the method moveMatchesToTop()  THis method will look for
@@ -89,12 +94,16 @@ public class WordDuoList {
     ("fox", "red"), ("the", "red")
 
      */
-    public void moveMatchesToTop(){
-        /* part c */
-
-
-
+    public void moveMatchesToTop() {
+        for(int i = 0; i<allDuos.size(); i++){
+            WordDuo x = allDuos.get(i);
+            if(x.getFirst().equals(x.getSecond())){
+                allDuos.remove(i);
+                allDuos.add(0,x);
+            }
+        }
     }
+
 
     public static void main(String[] args){
         String [] stuff = {"to","be","or","not","to","be"};
